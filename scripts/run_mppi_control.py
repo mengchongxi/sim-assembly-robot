@@ -22,33 +22,32 @@
         --robot-id dog1 --enable-memory --enable-velocity-tracking
 """
 
-import argparse
-import sys
+from __future__ import annotations
+
+from dataclasses import dataclass
+from typing import Literal
+
+import tyro
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="MPPI 四足机器人运动控制",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-    )
-    parser.add_argument(
-        "--config", required=True, help="YAML 配置文件路径"
-    )
-    parser.add_argument(
-        "--robot-id", required=True, help="机器人标识 (dog1, dog2)"
-    )
-    parser.add_argument(
-        "--enable-memory",
-        action="store_true",
-        help="启用历史动作记忆采样先验",
-    )
-    parser.add_argument(
-        "--enable-velocity-tracking",
-        action="store_true",
-        help="启用详细速度跟踪与 CSV 输出",
-    )
-    args = parser.parse_args()
+@dataclass
+class MPPIArgs:
+    """MPPI 四足机器人运动控制。"""
 
+    config: str
+    """YAML 配置文件路径。"""
+
+    robot_id: Literal["dog1", "dog2"]
+    """机器人标识。"""
+
+    enable_memory: bool = False
+    """启用历史动作记忆采样先验。"""
+
+    enable_velocity_tracking: bool = False
+    """启用详细速度跟踪与 CSV 输出。"""
+
+
+def main(args: MPPIArgs) -> None:
     # 延迟导入（JAX 初始化耗时）
     from robotsim.control.mppi import (
         ConfigManager,
@@ -126,4 +125,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(tyro.cli(MPPIArgs))
