@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco model="modular_robot">
+    <compiler angle="radian" meshdir="assets" texturedir="assets" autolimits="true"/>
+    <option timestep="0.002"/>
+    <option gravity="0 0 -9.81"/>
+    <statistic center="0 0 0.1" extent="0.6"/>
+    <visual>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <global azimuth="140" elevation="-30"/>
+    </visual>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+        <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+        <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    </asset>
+    <default>
+        <default class="base_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="0" rgba="0.8 0.2 0.2 0.3"/>
+        </default>
+        <default class="joint_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="0" rgba="0.2 0.8 0.2 0.3"/>
+        </default>
+        <default class="end_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="1" rgba="0.8 0.2 0.2 0" friction="0.6" />
+        </default>  
+        <default class="foot_site">
+            <site type="sphere" size="0.0175" pos="0 0 0" rgba="0.3 0.6 0.8 0.5" />
+        </default>
+        <default class="joint+y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint-y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint+x">
+            <joint type="hinge" axis="1 0 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint-x">
+            <joint type="hinge" axis="1 0 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint_motor">
+            <motor ctrlrange="-100 100"/>
+        </default>
+
+    </default>
+
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+        <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+    </worldbody>
+    <actuator>
+    </actuator>
+
+    <keyframe>
+    </keyframe>  
+</mujoco>

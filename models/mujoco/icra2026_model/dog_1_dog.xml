@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco model="modular_robot">
+    <compiler angle="radian" meshdir="assets" texturedir="assets" autolimits="true"/>
+    <option timestep="0.002"/>
+    <option iterations="2" ls_iterations="5" gravity="0.0 0.0 -9.81">
+        <flag eulerdamp="disable" />
+    </option>
+    <statistic center="0 0 0.1" extent="0.6"/>
+    <visual>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.3 0.3 0.3" specular="0 0 0"/>
+        <rgba haze="0.15 0.25 0.35 1"/>
+        <global azimuth="140" elevation="-30"/>
+    </visual>
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+        <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" markrgb="0.8 0.8 0.8" width="300" height="300"/>
+        <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+    </asset>
+    <default>
+        <default class="base_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="0" rgba="0.8 0.2 0.2 0.3"/>
+        </default>
+        <default class="joint_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="0" rgba="0.2 0.8 0.2 0.3"/>
+        </default>
+        <default class="end_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="1" rgba="0.8 0.2 0.2 0" friction="0.6" />
+        </default>  
+        <default class="wheel_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="0" rgba="0.2 0.8 0.2 0"/>
+        </default>
+        <default class="wheel_tire_collision">
+            <geom type="cylinder" size="0.085 0.01" pos="0 0 0" mass="0.5" quat="0 0 0.707 0.707" contype="0" conaffinity="1" rgba="0.2 0.8 0.2 0" friction="1.0"/>
+        </default>
+        <default class="foot_site">
+            <site type="sphere" size="0.0175" pos="0 0 0" rgba="0.3 0.6 0.8 0.5" />
+        </default>
+        <default class="joint+y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint-y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint+x">
+            <joint type="hinge" axis="1 0 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint-x">
+            <joint type="hinge" axis="1 0 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="wheel+y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0"/>
+        </default>
+        <default class="wheel-y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0"/>
+        </default>
+        <default class="joint_motor">
+            <motor ctrlrange="-100 100"/>
+        </default>
+        <default class="wheel_velocity">
+            <position kv="10" forcelimited="true" forcerange="-500 500"/>
+        </default>
+    </default>
+
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+        <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+        <body name="module1" pos="0 0 0.45">
+            
+            <freejoint/>
+            <geom class="base_collision"/>
+            <body name="module2" pos="0 0.12 0">
+                <site name="imu_site" pos="0 0 0" type="sphere" size="0.01"/>
+
+                <geom class="base_collision"/>
+            </body>
+            <body name="module3" pos="0 -0.12 0">
+                <geom class="base_collision"/>
+                
+            </body>
+            <body name="module4" pos="0.12 0 0">
+                <geom class="base_collision"/>
+                
+                <body name="module6" pos="0 0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex1" pos="0.12 0 0">
+                        <geom class="joint_collision"/>
+            
+                        <joint class="joint-x" name="modulex1_joint"/>
+                        <body name="module17" pos="0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module21" pos="0 0.12 0" quat="0.707 0 0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                <joint class="joint-y" name="module21_joint"/>
+                                <body name="module25" pos="0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module29" pos="0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module33" pos="0 0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint-y" name="module33_joint"/>
+                                            <body name="module37" pos="0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module41" pos="0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="FL_foot" class="foot_site" pos="0.06 0 -0.06"/>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+                <body name="module7" pos="0 -0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex2" pos="0.12 0 0">
+                        <geom class="joint_collision"/>
+                        
+                        
+                        <joint class="joint-x" name="modulex2_joint"/>
+                        <body name="module18" pos="0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module22" pos="0 -0.12 0" quat="0.707 0 0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                
+                                <joint class="joint+y" name="module22_joint"/>
+                                <body name="module26" pos="0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module30" pos="0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module34" pos="0 -0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint+y" name="module34_joint"/>
+                                            <body name="module38" pos="0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module42" pos="0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="FR_foot" class="foot_site" pos="0.06 0 -0.06"/>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+            <body name="module5" pos="-0.12 0 0">
+                <geom class="base_collision"/>
+                
+                <body name="module9" pos="0 0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex3" pos="-0.12 0 0">
+                        <geom class="joint_collision"/>
+                        
+                        
+                        <joint class="joint+x" name="modulex3_joint"/>
+                        <body name="module19" pos="-0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module23" pos="0 0.12 0" quat="0.707 0 -0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                
+                                <joint class="joint-y" name="module23_joint"/>
+                                <body name="module27" pos="-0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module31" pos="-0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module35" pos="0 0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint-y" name="module35_joint"/>
+                                            <body name="module39" pos="-0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module43" pos="-0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="RL_foot" class="foot_site" pos="-0.06 0 0.06"/>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+                <body name="module10" pos="0 -0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex4" pos="-0.12 0 0">
+                        <geom class="joint_collision"/>
+                        
+                        
+                        <joint class="joint+x" name="modulex4_joint"/>
+                        <body name="module20" pos="-0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module24" pos="0 -0.12 0" quat="0.707 0 -0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                
+                                <joint class="joint+y" name="module24_joint"/>
+                                <body name="module28" pos="-0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module32" pos="-0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module36" pos="0 -0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint+y" name="module36_joint"/>
+                                            <body name="module40" pos="-0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module44" pos="-0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="RR_foot" class="foot_site" pos="-0.06 0 0.06"/>
+                                                </body>     
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+    <actuator>
+        <motor name="modulex1_joint_actuator" joint="modulex1_joint" class="joint_motor"/>
+        <motor name="module21_joint_actuator" joint="module21_joint" class="joint_motor"/>
+        <motor name="module33_joint_actuator" joint="module33_joint" class="joint_motor"/>
+        <motor name="modulex2_joint_actuator" joint="modulex2_joint" class="joint_motor"/>
+        <motor name="module22_joint_actuator" joint="module22_joint" class="joint_motor"/>
+        <motor name="module34_joint_actuator" joint="module34_joint" class="joint_motor"/>
+        <motor name="modulex3_joint_actuator" joint="modulex3_joint" class="joint_motor"/>
+        <motor name="module23_joint_actuator" joint="module23_joint" class="joint_motor"/>
+        <motor name="module35_joint_actuator" joint="module35_joint" class="joint_motor"/>
+        <motor name="modulex4_joint_actuator" joint="modulex4_joint" class="joint_motor"/>
+        <motor name="module24_joint_actuator" joint="module24_joint" class="joint_motor"/>
+        <motor name="module36_joint_actuator" joint="module36_joint" class="joint_motor"/>
+
+    </actuator>
+    <sensor>
+        <gyro name="torso_gyro" site="imu_site"/>
+    </sensor>
+    <keyframe>
+        <key name="home" qpos="0 0 0.38 1 0 0 0 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8"
+            ctrl="0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8" />
+    </keyframe>  
+</mujoco>

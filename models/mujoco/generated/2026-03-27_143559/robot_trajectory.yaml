@@ -1,0 +1,1047 @@
+initial_position:
+  front_foot:
+  - 7
+  - 16
+  back_foot:
+  - 7
+  - 17
+initial_tiles:
+- type: base
+  position:
+  - 6
+  - 15
+- type: base
+  position:
+  - 8
+  - 17
+- type: base
+  position:
+  - 7
+  - 16
+- type: base
+  position:
+  - 8
+  - 20
+- type: base
+  position:
+  - 8
+  - 16
+- type: base
+  position:
+  - 7
+  - 19
+- type: base
+  position:
+  - 6
+  - 17
+- type: base
+  position:
+  - 8
+  - 19
+- type: base
+  position:
+  - 6
+  - 16
+- type: base
+  position:
+  - 5
+  - 19
+- type: base
+  position:
+  - 7
+  - 15
+- type: base
+  position:
+  - 6
+  - 19
+- type: joint
+  position:
+  - 8
+  - 18
+- type: joint
+  position:
+  - 7
+  - 17
+movements:
+- step_number: 1
+  action: PICKUP_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 7
+    - 16
+    back_foot:
+    - 7
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 7
+  - 15
+- step_number: 2
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 3
+  action: PLACE_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 5
+  - 17
+- step_number: 4
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 5
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 8
+    - 18
+    back_foot:
+    - 8
+    - 17
+- step_number: 6
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 19
+    back_foot:
+    - 8
+    - 18
+- step_number: 7
+  action: PICKUP_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 8
+    - 19
+    back_foot:
+    - 8
+    - 18
+  tile_type: BASE
+  tile_position:
+  - 8
+  - 20
+- step_number: 8
+  action: ROTATE_FRONT_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 8
+    - 19
+    back_foot:
+    - 7
+    - 19
+- step_number: 9
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 19
+    back_foot:
+    - 6
+    - 19
+- step_number: 10
+  action: ROTATE_BACK_180
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 5
+    - 19
+    back_foot:
+    - 6
+    - 19
+- step_number: 11
+  action: PLACE_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 5
+    - 19
+    back_foot:
+    - 6
+    - 19
+  tile_type: BASE
+  tile_position:
+  - 4
+  - 19
+- step_number: 12
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 19
+    back_foot:
+    - 7
+    - 19
+- step_number: 13
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 19
+    back_foot:
+    - 8
+    - 19
+- step_number: 14
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 8
+    - 18
+    back_foot:
+    - 8
+    - 19
+- step_number: 15
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 8
+    - 18
+- step_number: 16
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 16
+    back_foot:
+    - 8
+    - 17
+- step_number: 17
+  action: PICKUP_LEFT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 8
+    - 16
+    back_foot:
+    - 8
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 7
+  - 16
+- step_number: 18
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 8
+    - 18
+- step_number: 19
+  action: PLACE_RIGHT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 8
+    - 18
+  tile_type: BASE
+  tile_position:
+  - 9
+  - 17
+- step_number: 20
+  action: ROTATE_FRONT_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 21
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 6
+    - 17
+- step_number: 22
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 6
+    - 16
+    back_foot:
+    - 6
+    - 17
+- step_number: 23
+  action: PICKUP_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 6
+    - 16
+    back_foot:
+    - 6
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 6
+  - 15
+- step_number: 24
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 6
+    - 17
+- step_number: 25
+  action: PLACE_LEFT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 6
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 5
+  - 18
+- step_number: 26
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 27
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 28
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 9
+    - 17
+- step_number: 29
+  action: PICKUP_LEFT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 9
+    - 17
+  tile_type: JOINT
+  tile_position:
+  - 8
+  - 18
+- step_number: 30
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 31
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 8
+    - 16
+    back_foot:
+    - 8
+    - 17
+- step_number: 32
+  action: PLACE_RIGHT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 8
+    - 16
+    back_foot:
+    - 8
+    - 17
+  tile_type: JOINT
+  tile_position:
+  - 9
+  - 16
+- step_number: 33
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 9
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 34
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 35
+  action: PICKUP_LEFT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 7
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 8
+  - 16
+- step_number: 36
+  action: ROTATE_FRONT_180
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 9
+    - 17
+- step_number: 37
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 9
+    - 16
+    back_foot:
+    - 9
+    - 17
+- step_number: 38
+  action: PLACE_RIGHT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 9
+    - 16
+    back_foot:
+    - 9
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 10
+  - 16
+- step_number: 39
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 9
+    - 17
+- step_number: 40
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 41
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 42
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 6
+    - 17
+- step_number: 43
+  action: ROTATE_FRONT_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 5
+    - 18
+- step_number: 44
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 5
+    - 18
+    back_foot:
+    - 5
+    - 19
+- step_number: 45
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 6
+    - 19
+    back_foot:
+    - 5
+    - 19
+- step_number: 46
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 19
+    back_foot:
+    - 6
+    - 19
+- step_number: 47
+  action: PICKUP_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 7
+    - 19
+    back_foot:
+    - 6
+    - 19
+  tile_type: BASE
+  tile_position:
+  - 8
+  - 19
+- step_number: 48
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 19
+    back_foot:
+    - 5
+    - 19
+- step_number: 49
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 18
+    back_foot:
+    - 5
+    - 19
+- step_number: 50
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 5
+    - 18
+- step_number: 51
+  action: ROTATE_FRONT_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 6
+    - 17
+- step_number: 52
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 53
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 54
+  action: ROTATE_BACK_180
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 9
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 55
+  action: ROTATE_FRONT_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 9
+    - 17
+    back_foot:
+    - 9
+    - 16
+- step_number: 56
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 10
+    - 16
+    back_foot:
+    - 9
+    - 16
+- step_number: 57
+  action: PLACE_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 10
+    - 16
+    back_foot:
+    - 9
+    - 16
+  tile_type: BASE
+  tile_position:
+  - 11
+  - 16
+- step_number: 58
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 9
+    - 17
+    back_foot:
+    - 9
+    - 16
+- step_number: 59
+  action: ROTATE_FRONT_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 9
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 60
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 8
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 61
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 6
+    - 17
+- step_number: 62
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 5
+    - 17
+- step_number: 63
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 18
+    back_foot:
+    - 5
+    - 17
+- step_number: 64
+  action: ROTATE_FRONT_180
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 5
+    - 18
+    back_foot:
+    - 5
+    - 19
+- step_number: 65
+  action: ROTATE_BACK_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 6
+    - 19
+    back_foot:
+    - 5
+    - 19
+- step_number: 66
+  action: PICKUP_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 6
+    - 19
+    back_foot:
+    - 5
+    - 19
+  tile_type: BASE
+  tile_position:
+  - 7
+  - 19
+- step_number: 67
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 18
+    back_foot:
+    - 5
+    - 19
+- step_number: 68
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 5
+    - 18
+- step_number: 69
+  action: ROTATE_FRONT_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 6
+    - 17
+- step_number: 70
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 71
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 72
+  action: PLACE_LEFT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 7
+  - 18
+- step_number: 73
+  action: STEP_FORWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+- step_number: 74
+  action: PICKUP_RIGHT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 6
+  - 16
+- step_number: 75
+  action: PLACE_LEFT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 6
+    - 17
+    back_foot:
+    - 7
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 6
+  - 18
+- step_number: 76
+  action: STEP_BACKWARD
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+- step_number: 77
+  action: PICKUP_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 8
+    - 17
+  tile_type: BASE
+  tile_position:
+  - 6
+  - 17
+- step_number: 78
+  action: ROTATE_FRONT_LEFT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 7
+    - 17
+    back_foot:
+    - 7
+    - 18
+- step_number: 79
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 6
+    - 18
+    back_foot:
+    - 7
+    - 18
+- step_number: 80
+  action: ROTATE_FRONT_180
+  action_success: true
+  distance_moved: 2.0
+  result_position:
+    front_foot:
+    - 6
+    - 18
+    back_foot:
+    - 5
+    - 18
+- step_number: 81
+  action: ROTATE_BACK_RIGHT
+  action_success: true
+  distance_moved: 1.4142135623730951
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 5
+    - 18
+- step_number: 82
+  action: PLACE_FRONT
+  action_success: true
+  distance_moved: 0.0
+  result_position:
+    front_foot:
+    - 5
+    - 17
+    back_foot:
+    - 5
+    - 18
+  tile_type: BASE
+  tile_position:
+  - 5
+  - 16

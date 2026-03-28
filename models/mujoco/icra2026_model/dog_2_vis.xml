@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mujoco model="modular_robot">
+    <compiler angle="radian" meshdir="assets" texturedir="assets" autolimits="true"/>
+    <option timestep="0.002"/>
+    <option gravity="0 0 -9.81"/>
+    <statistic center="0 0 0.1" extent="0.6"/>
+    <visual>
+        <headlight diffuse="0.6 0.6 0.6" ambient="0.1 0.1 0.1" specular="0 0 0"/>
+        <global azimuth="120" elevation="-20"/>
+        <rgba haze="0.15 0.25 0.35 1"/>
+    </visual>
+    <asset>
+        <!-- 地面纹理 -->
+        <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+        markrgb="0.8 0.8 0.8" width="300" height="300"/>
+        <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+        <!-- 装配机械臂的网格 -->
+        <mesh name="arm0_link" content_type="model/stl" file="arm0_link.STL"/>
+        <mesh name="arm1_link" content_type="model/stl" file="arm1_link.STL"/>
+        <mesh name="arm2_link" content_type="model/stl" file="arm2_link.STL"/>
+        <mesh name="arm3_link" content_type="model/stl" file="arm3_link.STL"/>
+        <mesh name="arm4_link" content_type="model/stl" file="arm4_link.STL"/>
+        <mesh name="arm5_link" content_type="model/stl" file="arm5_link.STL"/>
+        <mesh name="arm6_link" content_type="model/stl" file="arm6_link.STL"/>
+        <mesh name="cube_wheel" content_type="model/stl" file="wheel_link.STL"/>
+
+        <!-- 模块化机器人的网格 -->
+        <mesh name="body" file="cube_base.STL"/>
+        <mesh name="cube_shell" file="cube_shell.STL"/>
+        <mesh name="cube_motor" file="cube_motor.STL"/>
+    </asset>
+    <default>
+        <default class="base_collision">
+            <geom type="mesh" mesh="body" pos="0.0055426 0.056 -0.01" mass="0.5" contype="0" conaffinity="0" rgba="0.2 0.2 0.2 1"/>
+        </default>
+        <default class="joint_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="0" rgba="0.2 0.8 0.2 0"/>
+        </default>
+        <default class="end_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="1" rgba="0.8 0.2 0.2 0" friction="0.6" />
+        </default>  
+        <default class="wheel_collision">
+            <geom type="box" size="0.06 0.06 0.06" pos="0 0 0" mass="0.5" contype="0" conaffinity="0" rgba="0.2 0.8 0.2 0"/>
+        </default>
+        <default class="wheel_tire_collision">
+            <geom type="cylinder" size="0.085 0.01" pos="0 0 0" mass="0.5" quat="0 0 0.707 0.707" contype="0" conaffinity="1" rgba="0.2 0.8 0.2 0" friction="1.0"/>
+        </default>
+        <default class="foot_site">
+            <site type="sphere" size="0.0175" pos="0 0 0" rgba="0.3 0.6 0.8 0" />
+        </default>
+        <default class="joint+y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint-y">
+            <joint type="hinge" axis="0 -1 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint+x">
+            <joint type="hinge" axis="1 0 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="joint-x">
+            <joint type="hinge" axis="-1 0 0" pos="0 0 0" damping="0.1" armature="0.01"/>
+        </default>
+        <default class="wheel+y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0"/>
+        </default>
+        <default class="wheel-y">
+            <joint type="hinge" axis="0 1 0" pos="0 0 0"/>
+        </default>
+        <default class="joint_motor">
+            <motor ctrlrange="-100 100"/>
+        </default>
+        <default class="wheel_velocity">
+            <position kv="10" forcelimited="true" forcerange="-500 500"/>
+        </default>
+    </default>
+
+    <worldbody>
+        <light pos="0 0 1.5" dir="0 0 -1" directional="true"/>
+        <geom name="floor" size="0 0 0.05" type="plane" material="groundplane"/>
+        <body name="module1" pos="0 0 0.45">
+            <freejoint/>
+            <geom class="base_collision"/>
+
+                
+                <body name="module6" pos="0 0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex1" pos="0.12 0 0">
+                        <geom class="joint_collision"/>
+                        <body name="joint_modulex1" pos="0 0 0" quat="0 -0.7071 0 0.7071">
+                            <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                            <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                            <body name="joint_modulex1_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                            </body>
+                        </body>
+                        <joint class="joint-x" name="modulex1_joint"/>
+                        <body name="module17" pos="0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module21" pos="0 0.12 0" quat="0.707 0 0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                <joint class="joint-y" name="module21_joint"/>
+                                <body name="joint_module21" pos="0 0 0" quat="0.707 0.707 0 0">
+                                    <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                    <body name="joint_module21_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                        <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                    </body>
+                                </body>
+                                <body name="module25" pos="0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module29" pos="0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module33" pos="0 0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint-y" name="module33_joint"/>
+                                            <body name="joint_module33" pos="0 0 0" quat="0.707 0.707 0 0">
+                                                <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                                                <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                                <body name="joint_module33_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                                    <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                                </body>
+                                            </body>
+                                            <body name="module37" pos="0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module41" pos="0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="FL_foot" class="foot_site" pos="0.06 0 -0.06"/>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+                <body name="module7" pos="0 -0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex2" pos="0.12 0 0">
+                        <geom class="joint_collision"/>
+                        
+                        
+                        <joint class="joint-x" name="modulex2_joint"/>
+                        <body name="joint_modulex2" pos="0 0 0" quat="0 -0.7071 0 0.7071">
+                            <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                            <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                            <body name="joint_modulex2_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                            </body>
+                        </body>
+                        <body name="module18" pos="0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module22" pos="0 -0.12 0" quat="0.707 0 0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                
+                                <joint class="joint-y" name="module22_joint"/>
+                                <body name="joint_module22" pos="0 0 0" quat="-0.707 0.707 0 0">
+                                    <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                                    <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                    <body name="joint_module22_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                        <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                    </body>
+                                </body>
+                                <body name="module26" pos="0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module30" pos="0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module34" pos="0 -0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint-y" name="module34_joint"/>
+                                            <body name="joint_module34" pos="0 0 0" quat="-0.707 0.707 0 0">
+                                                <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                                                <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                                <body name="joint_module34_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                                    <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                                </body>
+                                            </body>
+                                            <body name="module38" pos="0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module42" pos="0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="FR_foot" class="foot_site" pos="0.06 0 -0.06"/>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+
+            <body name="module5" pos="-0.12 0 0">
+                <geom class="base_collision"/>
+                
+                <body name="module9" pos="0 0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex3" pos="-0.12 0 0">
+                        <geom class="joint_collision"/>
+                        
+                        
+                        <joint class="joint+x" name="modulex3_joint"/>
+                        <body name="joint_modulex3" pos="0 0 0" quat="0 0.7071 0 0.7071">
+                            <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                            <body name="joint_modulex3_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                            </body>
+                        </body>
+                        <body name="module19" pos="-0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module23" pos="0 0.12 0" quat="0.707 0 -0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                
+                                <joint class="joint+y" name="module23_joint"/>
+                                <body name="joint_module23" pos="0 0 0" quat="0.707 0.707 0 0">
+                                    <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                    <body name="joint_module23_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                        <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                    </body>
+                                </body>
+                                <body name="module27" pos="-0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module31" pos="-0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module35" pos="0 0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint+y" name="module35_joint"/>
+                                            <body name="joint_module35" pos="0 0 0" quat="0.707 0.707 0 0">
+                                                <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                                                <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                                <body name="joint_module35_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                                    <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                                </body>
+                                            </body>
+                                            <body name="module39" pos="-0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module43" pos="-0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="RL_foot" class="foot_site" pos="-0.06 0 0.06"/>
+                                                </body>
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+                <body name="module10" pos="0 -0.12 0">
+                    <geom class="base_collision"/>
+                    
+                    <body name="modulex4" pos="-0.12 0 0">
+                        <geom class="joint_collision"/>
+                        
+                        
+                        <joint class="joint+x" name="modulex4_joint"/>
+                        <body name="joint_modulex4" pos="0 0 0" quat="0 0.7071 0 0.7071">
+                            <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                            <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                            <body name="joint_modulex4_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                            </body>
+                        </body>
+                        <body name="module20" pos="-0.12 0 0">
+                            <geom class="base_collision"/>
+                            
+                            <body name="module24" pos="0 -0.12 0" quat="0.707 0 -0.707 0">
+                                <geom class="joint_collision"/>
+                                
+                                
+                                <joint class="joint+y" name="module24_joint"/>
+                                <body name="joint_module24" pos="0 0 0" quat="-0.707 0.707 0 0">
+                                    <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                                    <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                    <body name="joint_module24_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                        <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                    </body>
+                                </body>
+                                <body name="module28" pos="-0.12 0 0">
+                                    <geom class="base_collision"/>
+                                    
+                                    <body name="module32" pos="-0.12 0 0">
+                                        <geom class="base_collision"/>
+                                        
+                                        <body name="module36" pos="0 -0.12 0">
+                                            <geom class="joint_collision"/>
+                                            
+                                            
+                                            <joint class="joint+y" name="module36_joint"/>
+                                            <body name="joint_module36" pos="0 0 0" quat="-0.707 0.707 0 0">
+                                                <inertial pos="0 0 0.029868" quat="0.5 0.5 -0.5 0.5" mass="0.50619" diaginertia="0.00068135 0.00049154 0.00049154"/>
+                                                <geom type="mesh" rgba="1 1 0 1" mesh="cube_motor"/>
+                                                <body name="joint_module36_shell" pos="0.0055426 -0.011957 -0.054801" quat="0.707105 -0.707108 0 0">
+                                                    <geom type="mesh" rgba="0.2 0.6 0.2 1" mesh="cube_shell"/>
+                                                </body>
+                                            </body>
+                                            <body name="module40" pos="-0.12 0 0">
+                                                <geom class="base_collision"/>
+                                                
+                                                <body name="module44" pos="-0.12 0 0">
+                                                    <geom class="base_collision"/>
+                                                    <geom class="end_collision"/>
+                                                    <site name="RR_foot" class="foot_site" pos="-0.06 0 0.06"/>
+                                                </body>     
+                                            </body>
+                                        </body>
+                                    </body>
+                                </body>
+                            </body>
+                        </body>
+                    </body>
+                </body>
+            </body>
+        </body>
+    </worldbody>
+    <actuator>
+        <motor name="modulex1_joint_actuator" joint="modulex1_joint" class="joint_motor"/>
+        <motor name="module21_joint_actuator" joint="module21_joint" class="joint_motor"/>
+        <motor name="module33_joint_actuator" joint="module33_joint" class="joint_motor"/>
+        <motor name="modulex2_joint_actuator" joint="modulex2_joint" class="joint_motor"/>
+        <motor name="module22_joint_actuator" joint="module22_joint" class="joint_motor"/>
+        <motor name="module34_joint_actuator" joint="module34_joint" class="joint_motor"/>
+        <motor name="modulex3_joint_actuator" joint="modulex3_joint" class="joint_motor"/>
+        <motor name="module23_joint_actuator" joint="module23_joint" class="joint_motor"/>
+        <motor name="module35_joint_actuator" joint="module35_joint" class="joint_motor"/>
+        <motor name="modulex4_joint_actuator" joint="modulex4_joint" class="joint_motor"/>
+        <motor name="module24_joint_actuator" joint="module24_joint" class="joint_motor"/>
+        <motor name="module36_joint_actuator" joint="module36_joint" class="joint_motor"/>
+
+    </actuator>
+
+    <keyframe>
+        <key name="home" qpos="0 0 0.38 1 0 0 0 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8 0 0.9 -1.8" />
+        <key name="tiling" qpos="0 0 0.06 1 0 0 0 0 1.571 3.141 0 1.571 3.141 0 1.571 3.141 0 1.571 3.141" />
+    </keyframe>  
+</mujoco>

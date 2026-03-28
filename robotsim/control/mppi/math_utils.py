@@ -1,8 +1,52 @@
 """MPPI 所需的 JAX 向量化数学工具。"""
 
+import functools
+
 import jax
 from jax import numpy as jnp
 from brax import math
+
+
+@functools.partial(jax.jit, static_argnums=(3,))
+def _interpolate_1d(x_knots, y_knots, x_query, k=2):
+    """JAX-native 1-D 多项式插值（替代 jax_cosmo InterpolatedUnivariateSpline）。
+
+    对每个查询点，取最近 k+1 个节点做拉格朗日插值。
+    支持批量 y_knots (shape [..., n_knots])，对最后一轴插值。
+
+    Args:
+        x_knots: 节点 x 坐标，shape (n_knots,)，需单调递增。
+        y_knots: 节点 y 值，shape (..., n_knots)。
+        x_query: 查询点 x，shape (n_query,)。
+        k: 插值阶数（默认 2 = 二次）。
+
+    Returns:
+        插值结果，shape (..., n_query)。
+    """
+    n = x_knots.shape[0]
+    # 为每个查询点找到最近节点的起始索引
+    idx = jnp.searchsorted(x_knots, x_query, side="right") - 1
+    # 以该节点为中心取 k+1 个点的窗口
+    half = k // 2
+    start = jnp.clip(idx - half, 0, n - (k + 1))
+
+    def _lagrange_at(i):
+        """对第 i 个查询点做 k+1 点拉格朗日插值。"""
+        s = start[i]
+        xs = jax.lax.dynamic_slice(x_knots, (s,), (k + 1,))
+        # y_knots 可能是 2-D (..., n_knots)，需要对最后一轴切片
+        ys = jax.lax.dynamic_slice_in_dim(y_knots, s, k + 1, axis=-1)
+        xq = x_query[i]
+        # 拉格朗日基函数
+        bases = jnp.ones(k + 1)
+        for j in range(k + 1):
+            for m in range(k + 1):
+                bases = bases.at[j].mul(
+                    jnp.where(j == m, 1.0, (xq - xs[m]) / (xs[j] - xs[m]))
+                )
+        return jnp.tensordot(ys, bases, axes=([-1], [0]))
+
+    return jax.vmap(_lagrange_at)(jnp.arange(x_query.shape[0]))
 
 
 class MathUtils:

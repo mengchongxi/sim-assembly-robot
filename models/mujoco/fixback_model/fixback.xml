@@ -1,0 +1,51 @@
+<mujoco model="Transport assembly.SLDASM">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/obj" file="base_link.obj"/>
+    <mesh name="flink1" content_type="model/obj" file="flink1.obj"/>
+    <mesh name="flink2" content_type="model/obj" file="flink2.obj"/>
+    <mesh name="flink3" content_type="model/obj" file="flink3.obj"/>
+    <mesh name="flink4" content_type="model/obj" file="flink4.obj"/>
+    <mesh name="flink5" content_type="model/obj" file="flink5.obj"/>
+    <mesh name="flink6" content_type="model/obj" file="flink6.obj"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" rgba="0.792157 0.819608 0.933333 1" mesh="base_link"/>
+    <body name="flink1" pos="0 0.00090651 0.02601">
+      <inertial pos="-5.3763e-07 0.0014762 0.023343" quat="0.993988 -0.109487 2.1735e-06 9.38424e-05" mass="0.018736" diaginertia="6.2805e-06 4.52489e-06 1.84221e-06"/>
+      <joint name="fjoint1" pos="0 0 0" axis="0 0 -1" range="-3.14159 3.14159"/>
+      <geom type="mesh" rgba="1 1 1 1" mesh="flink1"/>
+      <body name="flink2" pos="0.0024 0.0047822 0.040046">
+        <inertial pos="-0.0067806 0.02139 0.071662" quat="0.97551 -0.219941 -0.00129392 -0.00196913" mass="0.27768" diaginertia="7.44244e-05 5.9608e-05 2.96675e-05"/>
+        <joint name="fjoint2" pos="0 0 0" axis="1 0 0" range="-3.14159 3.14159"/>
+        <geom type="mesh" rgba="1 1 1 1" mesh="flink2"/>
+        <body name="flink3" pos="0 0.068169 0.12809">
+          <inertial pos="-0.00590568 0.0473192 -0.0633641" quat="0.962583 0.270966 -0.00113106 0.00315646" mass="0.170998" diaginertia="8.94041e-05 8.15545e-05 1.91661e-05"/>
+          <joint name="fjoint3" pos="0 0 0" axis="-1 0 0" range="-3.14159 3.14159"/>
+          <geom type="mesh" rgba="1 1 1 1" mesh="flink3"/>
+          <body name="flink4" pos="0 0.068824 -0.12774">
+            <inertial pos="-0.00239965 0.00416062 -0.0244326" quat="0.941394 0.337309 3.21937e-06 0.000122882" mass="0.0286658" diaginertia="8.48186e-06 7.33711e-06 6.11943e-06"/>
+            <joint name="fjoint4" pos="0 0 0" axis="1 0 0" range="-3.14159 3.14159"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="flink4"/>
+            <body name="flink5" pos="-0.0024 0.005153 -0.04">
+              <inertial pos="9.5792e-05 0.00018163 -0.011835" quat="0.0552473 0.704563 -0.0474557 0.705895" mass="0.1077" diaginertia="0.000111377 5.81291e-05 5.69042e-05"/>
+              <joint name="fjoint5" pos="0 0 0" axis="0 0 -1" range="-3.14159 3.14159"/>
+              <geom type="mesh" rgba="1 1 1 1" mesh="flink5"/>
+              <body name="flink6" pos="0.0005 0.0619 -0.026" quat="0.707107 0.707107 0 0" >
+                <inertial pos="-0.0011721 0.045595 0.010276" quat="0.0156249 0.706666 -0.00307858 0.707368" mass="0.081025" diaginertia="6.06886e-05 3.35613e-05 3.08511e-05"/>
+                <joint name="fjoint6" pos="0 0 0" axis="1 0 0" range="-3.14159 3.14159"/>
+                <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="flink6"/>
+              </body>
+              <body name="end_link" pos="0 0 -0.026"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="target" mocap="true" pos="0 0 0" quat="1 0 0 0">
+      <geom name="target_vis" type="sphere" size="0.008" rgba="0.9 0.2 0.1 0.8" contype="0" conaffinity="0"/>
+    </body>
+  </worldbody>
+</mujoco>

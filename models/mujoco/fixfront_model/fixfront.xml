@@ -1,0 +1,51 @@
+<mujoco model="Transport assembly.SLDASM">
+  <compiler angle="radian"/>
+
+  <asset>
+    <mesh name="base_link" content_type="model/obj" file="base_link.obj"/>
+    <mesh name="link1" content_type="model/obj" file="link1.obj"/>
+    <mesh name="link2" content_type="model/obj" file="link2.obj"/>
+    <mesh name="link3" content_type="model/obj" file="link3.obj"/>
+    <mesh name="link4" content_type="model/obj" file="link4.obj"/>
+    <mesh name="link5" content_type="model/obj" file="link5.obj"/>
+    <mesh name="grasp" content_type="model/obj" file="grasp.obj"/>
+  </asset>
+
+  <worldbody>
+    <geom type="mesh" rgba="0 0.501961 0 1" mesh="base_link"/>
+    <body name="link1" pos="0 -0.0011474 0.026">
+      <inertial pos="0 -0.0013675 0.0165386" quat="0.94011 0.340871 0 0" mass="0.0254457" diaginertia="8.41512e-06 7.27023e-06 6.05623e-06"/>
+      <joint name="joint1" pos="0 0 0" axis="0 0 -1" range="-3.14159 3.14159"/>
+      <geom type="mesh" rgba="1 1 1 1" mesh="link1"/>
+      <body name="link2" pos="-0.0013231 -0.005153 0.04" quat="-2.59734e-06 -0.707105 0.707108 2.59735e-06">
+        <inertial pos="0.02082 0.00363441 -0.0630693" quat="0.682551 -0.191615 -0.19316 0.678305" mass="0.159021" diaginertia="8.80855e-05 7.98336e-05 1.83127e-05"/>
+        <joint name="joint2" pos="0 0 0" axis="0 -1 0" range="-3.14159 3.14159"/>
+        <geom type="mesh" rgba="0.776471 0.756863 0.737255 1" mesh="link2"/>
+        <body name="link3" pos="0.068824 -0.0037231 -0.12774" quat="-2.59734e-06 0.707105 -0.707108 2.59735e-06">
+          <inertial pos="-0.0067806 -0.0467784 -0.0564244" quat="0.975509 -0.219946 -0.00129393 -0.00196921" mass="0.277675" diaginertia="7.44241e-05 5.96082e-05 2.96671e-05"/>
+          <joint name="joint3" pos="0 0 0" axis="-1 0 0" range="-3.14159 3.14159"/>
+          <geom type="mesh" rgba="1 1 1 1" mesh="link3"/>
+          <body name="link4" pos="0 -0.068169 -0.12809">
+            <inertial pos="-0.0024 -0.0034706 -0.023963" quat="0.942325 -0.3347 0 0" mass="0.024594" diaginertia="8.4009e-06 7.17644e-06 5.96146e-06"/>
+            <joint name="joint4" pos="0 0 0" axis="1 0 0" range="-3.14159 3.14159"/>
+            <geom type="mesh" rgba="1 1 1 1" mesh="link4"/>
+            <body name="link5" pos="-0.0024 -0.0047822 -0.040046" quat="0.999989 0.00463198 0 0">
+              <inertial pos="-2.2475e-07 -0.0017668 -0.018325" quat="0.000164146 0.707107 -0.000453171 0.707107" mass="0.044819" diaginertia="6.2008e-05 3.2498e-05 3.2113e-05"/>
+              <joint name="joint5" pos="0 0 0" axis="0 0 -1" range="-3.14159 3.14159"/>
+              <geom type="mesh" rgba="0 0.50196 0 1" mesh="link5"/>
+              <body name="end_link" pos="0 0 -0.026"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+    <body name="grasp" pos="0.0005 0.060753 0" quat="0.5 -0.5 0.5 0.5">
+      <inertial pos="-0.0467444 0.00233277 -0.00990169" quat="0.497499 0.51123 -0.489138 0.501879" mass="0.0765884" diaginertia="6.06655e-05 3.34896e-05 3.07823e-05"/>
+      <joint name="joint_grasp" pos="0 0 0" axis="0 -1 0" range="-3.14159 3.14159"/>
+      <geom type="mesh" rgba="0.647059 0.619608 0.588235 1" mesh="grasp"/>
+    </body>
+    <body name="target" mocap="true" pos="0 0 0" quat="1 0 0 0">
+      <geom name="target_vis" type="sphere" size="0.008" rgba="0.9 0.2 0.1 0.8" contype="0" conaffinity="0"/>
+    </body>
+  </worldbody>
+</mujoco>

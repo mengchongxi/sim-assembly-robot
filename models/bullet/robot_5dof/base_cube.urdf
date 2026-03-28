@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<robot name="cube"> <!-- Renamed for clarity -->
+  <link name="baseLink">
+    <!-- Contact properties remain, but won't be used without a collision shape -->
+    <contact>
+      <lateral_friction value="1.0"/>
+      <rolling_friction value="0.0"/>
+      <contact_cfm value="0.0"/>
+      <contact_erp value="1.0"/>
+    </contact>
+
+    <inertial>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.12"/> <!-- Original offset kept -->
+       <mass value="1.0"/>
+       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/> <!-- Original inertia kept -->
+    </inertial>
+
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.06"/>
+      <geometry>
+        <box size="0.12 0.12 0.12"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>

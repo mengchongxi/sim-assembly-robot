@@ -7,9 +7,8 @@ import functools
 
 import jax
 from jax import numpy as jnp
-from jax_cosmo.scipy.interpolate import InterpolatedUnivariateSpline
-
 from robotsim.control.mppi.config import Config
+from robotsim.control.mppi.math_utils import _interpolate_1d
 
 
 class DIALMPCController:
@@ -82,14 +81,12 @@ class DIALMPCController:
     @functools.partial(jax.jit, static_argnums=(0,))
     def node2u(self, nodes):
         """控制节点到完整轨迹的样条插值。"""
-        spline = InterpolatedUnivariateSpline(self.step_nodes, nodes, k=2)
-        return spline(self.step_us)
+        return _interpolate_1d(self.step_nodes, nodes, self.step_us, k=2)
 
     @functools.partial(jax.jit, static_argnums=(0,))
     def u2node(self, us):
         """完整轨迹到控制节点的重采样。"""
-        spline = InterpolatedUnivariateSpline(self.step_us, us, k=2)
-        return spline(self.step_nodes)
+        return _interpolate_1d(self.step_us, us, self.step_nodes, k=2)
 
     @functools.partial(jax.jit, static_argnums=(0,))
     def reverse_once(self, state, rng, Ybar_i, noise_scale):

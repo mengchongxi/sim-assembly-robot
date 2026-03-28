@@ -1,0 +1,76 @@
+<mujoco model="generation">
+  <compiler angle="radian"/>
+
+  <option timestep="0.02"/>
+
+  <size nkey="1"/>
+
+  <default>
+    <joint armature="0.01" damping="0.1"/>
+    <geom friction="0.6 0.1 0.1" density="300"/>
+  </default>
+
+  <worldbody>
+    <geom name="floor" size="10 10 0.05" type="plane"/>
+    <body name="body_basic_0" pos="1.08 0.96 0">
+      <joint name="root_freejoint" type="free" armature="0" damping="0"/>
+      <geom name="geom_basic_0" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+      <body name="body_basic_1" pos="0.12 0 0">
+        <geom name="geom_basic_1" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+        <body name="body_basic_2" pos="0.12 0 0">
+          <geom name="geom_basic_2" size="0.06 0.06 0.06" type="box" contype="0" rgba="0 0 0 1"/>
+        </body>
+        <body name="body_basic_3" pos="0 -0.12 0">
+          <geom name="geom_basic_3" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+          <body name="body_basic_4" pos="0.12 0 0">
+            <geom name="geom_basic_4" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+            <body name="body_basic_5" pos="0.12 0 0">
+              <geom name="geom_basic_5" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+              <body name="body_joint_6" pos="0 -0.12 0">
+                <geom name="geom_joint_6" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="0.6 0.2 0.8 1"/>
+                <body name="joint_disk_6" pos="0.06 0 0" quat="0.707107 0 0.707107 0">
+                  <joint name="disk_hinge_6" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159"/>
+                  <geom name="disk_geom_6" size="0.06 0.003" type="cylinder" contype="0" conaffinity="0" rgba="0.2 0.6 0.9 1"/>
+                  <body name="body_basic_7" pos="0 0 0.06" quat="0.707107 0 -0.707107 0">
+                    <geom name="geom_basic_7" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+                    <body name="body_basic_8" pos="0.12 0 0">
+                      <geom name="geom_basic_8" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+                      <body name="body_joint_9" pos="0 -0.12 0">
+                        <geom name="geom_joint_9" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="0.6 0.2 0.8 1"/>
+                        <body name="joint_disk_9" pos="0.06 0 0" quat="0.707107 0 0.707107 0">
+                          <joint name="disk_hinge_9" pos="0 0 0" axis="0 0 1" limited="true" range="-3.14159 3.14159"/>
+                          <geom name="disk_geom_9" size="0.06 0.003" type="cylinder" contype="0" conaffinity="0" rgba="0.2 0.6 0.9 1"/>
+                          <body name="body_basic_10" pos="0 0 0.06" quat="0.707107 0 -0.707107 0">
+                            <geom name="geom_basic_10" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+                            <body name="body_basic_11" pos="0.12 0 0">
+                              <geom name="geom_basic_11" size="0.06 0.06 0.06" type="box" contype="0" rgba="0 0 0 1"/>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+          <body name="body_basic_12" pos="0 -0.12 0">
+            <geom name="geom_basic_12" size="0.06 0.06 0.06" type="box" contype="0" conaffinity="0" rgba="1 0 0 1"/>
+            <body name="body_basic_13" pos="0 -0.12 0">
+              <geom name="geom_basic_13" size="0.06 0.06 0.06" type="box" contype="0" rgba="0 0 0 1"/>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <general name="act_disk_hinge_6" joint="disk_hinge_6" ctrllimited="true" ctrlrange="-100 100"/>
+    <general name="act_disk_hinge_9" joint="disk_hinge_9" ctrllimited="true" ctrlrange="-100 100"/>
+  </actuator>
+
+  <keyframe>
+    <key name="home" qpos="0 0 0 1 0 0 0 0 0"/>
+  </keyframe>
+</mujoco>
